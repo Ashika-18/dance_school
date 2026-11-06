@@ -1,0 +1,979 @@
+@charset "UTF-8";
+/**
+ * Theme Name: SUNNY KIDS DANCE ACADEMY
+ * Theme URI: https://ashikaworks.com/
+ * Description: 吉祥寺の少人数定員制キッズダンスアカデミー向けWordPressオリジナルテーマ。早坂ダンススタジオの幾何学的規律・エディトリアルレイアウトを完全継承。
+ * Author: AshikaWorks
+ * Author URI: https://ashikaworks.com/
+ * Version: 1.0.0
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: sunny-kids-dance
+ */
+
+/* ==========================================================================
+   01. CSSカスタムプロパティ（デザインシステム・幾何学規律）
+   ========================================================================== */
+:root {
+  /* カラーシステム */
+  --color-bg-base: #FFFFFF;
+  --color-bg-sub: #FBF9F5;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-primary-block: #B9852B;
+  --color-bg-accent-block: #A73A27;
+  --color-bg-footer: #222B35;
+
+  --color-text-primary: #222222;
+  --color-text-secondary: #444444;
+  --color-text-muted: #B9852B;
+  --color-text-sub-muted: #888888;
+  --color-text-inverse: #FFFFFF;
+
+  --color-accent: #C59B27;
+  --color-accent-sub: #A73A27;
+  --color-border: #E8E3D9;
+  --color-border-subtle: rgba(185, 133, 43, 0.15);
+  --color-overlay-dim: rgba(0, 0, 0, 0.20);
+
+  /* タイポグラフィシステム */
+  --font-serif: "Noto Serif JP", "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --font-sans: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+  --font-en: "Cinzel", "Cormorant Garamond", "Montserrat", "Helvetica Neue", sans-serif;
+
+  /* スペーシング＆レイアウト */
+  --container-max: 1200px;
+  --container-sub: 1000px;
+  --container-narrow: 960px;
+  --space-section: clamp(80px, 8vw, 120px);
+  --header-height-desktop: 74px;
+  --header-height-mobile: 60px;
+  --hero-height-desktop: 100vh;
+  --hero-height-mobile: 100svh;
+
+  /* 角丸（border-radius）スケール体系 */
+  --radius-pill: 50px;
+  --radius-card: 24px;
+  --radius-modal: 16px;
+  --radius-img: 16px;
+  --radius-round: 50%;
+
+  /* 陰影（Elevation） */
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.06);
+  --shadow-modal: 0 12px 36px rgba(0, 0, 0, 0.16);
+  --shadow-button-hover: 0 8px 24px rgba(185, 133, 43, 0.35);
+
+  /* イージング・トランジション */
+  --transition-base: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Z-index レイヤー階層 */
+  --z-header: 100;
+  --z-floating: 90;
+  --z-scroll-top: 50;
+  --z-content: 20;
+  --z-media: 1;
+  --z-base: 0;
+}
+
+/* ==========================================================================
+   02. リセット＆ベーススタイル
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-base);
+  line-height: 1.90;
+  letter-spacing: 0.04em;
+  font-feature-settings: "palt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-base), opacity var(--transition-base);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  border: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   03. 共通レイアウトコンポーネント
+   ========================================================================== */
+.skd-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.skd-container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.skd-container--sub {
+  max-width: var(--container-sub);
+}
+
+.skd-section-label-en {
+  display: block;
+  font-family: var(--font-en);
+  font-size: clamp(0.75rem, 0.9vw, 0.8125rem);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.skd-section-heading-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: var(--color-text-primary);
+  text-align: center;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  margin-bottom: 24px;
+}
+
+.skd-section-heading-h2--inverse {
+  color: var(--color-text-inverse);
+}
+
+/* 有機的ブラー光芒装飾 */
+.skd-glow-canvas {
+  position: relative;
+}
+
+.skd-glow-canvas::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: -100px;
+  width: 420px;
+  height: 420px;
+  border-radius: var(--radius-round);
+  background: radial-gradient(circle, rgba(230, 161, 34, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.skd-glow-canvas::after {
+  content: "";
+  position: absolute;
+  bottom: 5%;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: var(--radius-round);
+  background: radial-gradient(circle, rgba(167, 58, 39, 0.10) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================================================
+   04. 固定グローバルヘッダー & ドロワー
+   ========================================================================== */
+.skd-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height-desktop);
+  background-color: #FFFFFF;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: var(--z-header);
+  display: flex;
+  align-items: center;
+  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.skd-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.skd-header__brand-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.skd-header__logo a {
+  display: flex;
+  flex-direction: column;
+}
+
+.skd-header__logo-main {
+  font-family: var(--font-en);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.skd-header__logo-sub {
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+}
+
+.skd-header__lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-bg-base);
+}
+
+.skd-header__nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.skd-header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.skd-header__nav-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #333333;
+  letter-spacing: 0.04em;
+  position: relative;
+  padding: 6px 0;
+}
+
+.skd-header__nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-base);
+}
+
+.skd-header__nav-link:hover {
+  color: var(--color-text-muted);
+}
+
+.skd-header__nav-link:hover::after {
+  width: 100%;
+}
+
+.skd-header__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(197, 155, 39, 0.25);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
+}
+
+.skd-header__cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-button-hover);
+  background-color: #A8811A;
+}
+
+.skd-header__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.skd-header__hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 2px;
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+
+/* モバイルドロワー */
+.skd-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #FFFFFF;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.skd-drawer.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.skd-drawer__menu {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skd-drawer__menu a {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.skd-drawer__cta {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+/* ==========================================================================
+   05. ファーストビュー（HERO VIEW）
+   ========================================================================== */
+.skd-hero {
+  position: relative;
+  width: 100%;
+  height: var(--hero-height-desktop);
+  min-height: 720px;
+  max-height: 960px;
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--color-bg-sub);
+  overflow: hidden;
+  z-index: var(--z-content);
+}
+
+.skd-hero__media-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-media);
+}
+
+.skd-hero__video,
+.skd-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.skd-hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-overlay-dim);
+  z-index: calc(var(--z-media) + 1);
+}
+
+.skd-hero__content {
+  position: relative;
+  z-index: var(--z-content);
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 100px;
+}
+
+.skd-hero__statement-box {
+  max-width: 680px;
+  color: var(--color-text-inverse);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+.skd-hero__h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 3.5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.08em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  margin-bottom: 20px;
+}
+
+.skd-hero__h1 span {
+  display: block;
+}
+
+.skd-hero__sub-en {
+  display: block;
+  font-family: var(--font-en);
+  font-size: clamp(1.0rem, 1.2vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.20;
+  margin-bottom: 12px;
+  opacity: 0.95;
+}
+
+.skd-hero__sub-ja {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.80;
+  letter-spacing: 0.05em;
+  opacity: 0.90;
+}
+
+/* ==========================================================================
+   06. PHILOSOPHY（哲学・もてなしの心）
+   ========================================================================== */
+.skd-section-philosophy {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+  background-color: var(--color-bg-sub);
+  position: relative;
+  overflow: hidden;
+}
+
+.skd-philosophy__layout {
+  display: grid;
+  grid-template-columns: 46% 54%;
+  gap: 56px;
+  align-items: center;
+}
+
+.skd-philosophy__visual-wrap {
+  position: relative;
+}
+
+.skd-philosophy__img-primary {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.skd-philosophy__art-overlay {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 220px;
+  pointer-events: none;
+  opacity: 0.90;
+}
+
+.skd-philosophy__text-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.skd-philosophy__text-wrap .skd-section-heading-h2 {
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.skd-philosophy__text-wrap .skd-section-label-en {
+  text-align: left;
+}
+
+.skd-philosophy__lead {
+  font-size: 1.0625rem;
+  line-height: 1.95;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   07. FEATURES（5つの丸アイコン特徴）
+   ========================================================================== */
+.skd-section-features {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+  background-color: var(--color-bg-base);
+}
+
+.skd-features__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.skd-feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.skd-feature-item__circle {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-round);
+  background-color: var(--color-bg-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  border: 1px solid var(--color-border);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.skd-feature-item:hover .skd-feature-item__circle {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.skd-feature-item__circle img {
+  width: 48px;
+  height: 48px;
+}
+
+.skd-feature-item__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.skd-feature-item__desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   08. COMMITMENT / POINTS（マスタード背景・左右交互カード）
+   ========================================================================== */
+.skd-section-commitment {
+  background-color: var(--color-bg-primary-block);
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skd-commitment__lead-banner {
+  text-align: center;
+  color: var(--color-text-inverse);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 48px;
+}
+
+.skd-commitment__lead-banner span {
+  color: #FFE680;
+}
+
+.skd-point-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  max-width: var(--container-narrow);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skd-point-card {
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 36px 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+}
+
+.skd-point-card--reverse {
+  flex-direction: row-reverse;
+}
+
+.skd-point-card__text-col {
+  flex: 1 1 55%;
+}
+
+.skd-point-card__number {
+  display: block;
+  font-family: var(--font-en);
+  font-size: clamp(2.25rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--color-bg-accent-block);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.skd-point-card__title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.45;
+  margin-bottom: 16px;
+}
+
+.skd-point-card__body {
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: #555555;
+}
+
+.skd-point-card__media-col {
+  flex: 1 1 45%;
+  border-radius: var(--radius-img);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.skd-point-card__media-col img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.skd-point-card:hover .skd-point-card__media-col img {
+  transform: scale(1.03);
+}
+
+/* ==========================================================================
+   09. CLASS CURRICULUM（3カラムカード）
+   ========================================================================== */
+.skd-section-classes {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+  background-color: var(--color-bg-base);
+}
+
+.skd-class-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 56px;
+}
+
+.skd-class-card {
+  background-color: var(--color-bg-surface);
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.skd-class-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.09);
+}
+
+.skd-class-card__thumb-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  position: relative;
+}
+
+.skd-class-card__thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.skd-class-card:hover .skd-class-card__thumb-wrap img {
+  transform: scale(1.04);
+}
+
+.skd-class-card__badge-target {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background-color: rgba(34, 43, 53, 0.88);
+  color: var(--color-text-inverse);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(4px);
+}
+
+.skd-class-card__content {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.skd-class-card__title {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.skd-class-card__spec-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.skd-class-card__spec-pill {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-sub);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+}
+
+.skd-class-card__excerpt {
+  font-size: 0.875rem;
+  line-height: 1.80;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.skd-class-card__footer {
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skd-class-card__price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.skd-class-card__price span {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-text-sub-muted);
+}
+
+.skd-class-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: all var(--transition-base);
+}
+
+.skd-class-card__btn:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+}
+
+/* ==========================================================================
+   10. SPECIFICATIONS & TRANSPARENCY（客観データマトリクス）
+   ========================================================================== */
+.skd-section-specs {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+  background-color: var(--color-bg-sub);
+}
+
+.skd-specs-table-wrap {
+  max-width: var(--container-sub);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-top: 48px;
+}
+
+.skd-specs-table {
+  width: 100%;
+}
+
+.skd-specs-table tr {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skd-specs-table tr:last-child {
+  border-bottom: none;
+}
+
+.skd-specs-table th {
+  width: 260px;
+  padding: 20px 28px;
+  background-color: #FAF8F4;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-align: left;
+  vertical-align: middle;
+  border-right: 1px solid var(--color-border);
+}
+
+.skd-specs-table td {
+  padding: 20px 28px;
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  vertical-align: middle;
+}
+
+.skd-specs-table td strong {
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ==========================================================================
+   11. TRIAL CTA（テラコッタ背景セクション）
+   ========================================================================== */
+.skd-section-trial {
+  background-color: var(--color-bg-accent-block);
+  color: var(--color-text-inverse);
+  padding-top: 96px;
+  padding-bottom: 96px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.skd-trial-box {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skd-trial-box__tag {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.20);
+  color: var(--color-text-inverse);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 20px;
+}
+
+.skd-trial-box__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+}
+
+.skd-trial-box__lead {
+  font-size: 1rem;
+  line-height: 1.85;
+  opacity: 0.92;
+  margin-bottom: 40px;
+}
+
+.skd-trial-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+}
