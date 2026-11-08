@@ -29,6 +29,7 @@ defined('ABSPATH') || exit;
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<div class="opening-mask"><span class="opening-text">Let's dance!</span></div>
 <?php wp_body_open(); ?>
 
 <!-- アクセシビリティ・スキップリンク -->

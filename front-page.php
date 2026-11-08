@@ -20,7 +20,7 @@ get_header();
     <section id="hero" class="skd-hero" aria-label="<?php esc_attr_e('メインビジュアル', 'sunny-kids-dance'); ?>">
         <div class="skd-hero__media-layer">
             <video class="skd-hero__video" autoplay muted loop playsinline poster="<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-fallback.jpg'); ?>">
-                <source src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-dance.mp4'); ?>" type="video/mp4">
+                <source src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-video.mp4'); ?>" type="video/mp4">
             </video>
             <div class="skd-hero__overlay" aria-hidden="true"></div>
         </div>
@@ -474,38 +474,27 @@ get_header();
                 スタジオ所在地・道順案内
             </h2>
 
-            <div class="skd-access__layout">
-                <div class="skd-access__map-wrap">
-                    <iframe 
-                        title="<?php esc_attr_e('サニーキッズダンスアカデミー周辺地図', 'sunny-kids-dance'); ?>"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.54848347895!2d139.57762!3d35.70284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018ee47683d7897%3A0x6b6385d342000000!2z5ZCJ56Wl5a-66aeF!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" 
-                        width="600" 
-                        height="450" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+            <div class="skd-access-card">
+                <div class="skd-access-card__route">
+                    <h3 class="skd-access-card__title">
+                        <svg class="skd-access-card__pin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path>
+                            <circle cx="12" cy="10" r="2.4"></circle>
+                        </svg>
+                        吉祥寺駅からの道順（徒歩約3分）
+                    </h3>
+                    <p class="skd-access-card__lead">初めての方でも迷わないように、駅からの道順をご案内しております。</p>
+                    <p class="skd-access-card__steps">改札を出て右手の公園口（南口）より地上へ、横断歩道を渡り、吉祥寺通りを井の頭公園方面へ直進約200m。1階にベーカリーの入るビルの3階です。</p>
+                    <p class="skd-access-card__note">※ビル内エレベーター完備。ベビーカーのままスタジオフロアまでお越しいただけます。</p>
+                    <a class="skd-access-card__map-link" href="<?php echo esc_url('https://www.google.com/maps/dir/?api=1&origin=吉祥寺駅&destination=東京都武蔵野市吉祥寺南町2丁目&travelmode=walking'); ?>" target="_blank" rel="noopener noreferrer">
+                        Googleマップでルートを見る
+                    </a>
                 </div>
 
-                <div class="skd-access__info-wrap">
-                    <div class="skd-access__address-box">
-                        <h3 class="skd-access__studio-name">SUNNY KIDS DANCE ACADEMY 吉祥寺校</h3>
-                        <p class="skd-access__address-text">
-                            〒180-0005 東京都武蔵野市吉祥寺南町2丁目（吉祥寺駅公園口 徒歩3分）<br>
-                            吉祥寺通り直進・サニービル 3F<br>
-                            ※ビル内エレベーター完備。ベビーカーのままスタジオフロアまでお越しいただけます。
-                        </p>
-                    </div>
-
-                    <div class="skd-access__route-card">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/route-guide-thumb.jpg'); ?>" alt="吉祥寺駅前からの歩道風景" class="skd-access__route-thumb" width="180" height="240" loading="lazy">
-                        <div class="skd-access__route-text">
-                            <h4>吉祥寺駅南口（公園口）からの道順</h4>
-                            <p>改札を出て右手の公園口（南口）より地上へ。横断歩道を渡り、吉祥寺通りを井の頭公園方面へ直進約200m。1階にベーカリーの入るビルの3階です。</p>
-                        </div>
-                    </div>
-                </div>
+                <figure class="skd-access-card__photo">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/route-guide-thumb.jpg'); ?>" alt="吉祥寺駅公園口からスタジオ方面へ続く道" width="480" height="640" loading="lazy">
+                    <figcaption class="skd-access-card__caption">1Fのベーカリーが目印です</figcaption>
+                </figure>
             </div>
         </div>
     </section>

@@ -18,7 +18,7 @@ get_header();
     <section id="hero" class="skd-hero" aria-label="<?php esc_attr_e('メインビジュアル', 'sunny-kids-dance'); ?>">
         <div class="skd-hero__media-layer">
             <video class="skd-hero__video" autoplay muted loop playsinline poster="<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-fallback.jpg'); ?>">
-                <source src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-dance.mp4'); ?>" type="video/mp4">
+                <source src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-video.mp4'); ?>" type="video/mp4">
             </video>
             <div class="skd-hero__overlay" aria-hidden="true"></div>
         </div>
