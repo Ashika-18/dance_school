@@ -78,7 +78,6 @@ defined('ABSPATH') || exit;
                     </div>
 
                     <div class="skd-footer__links-group">
-                        <p class="skd-footer__group-title"><?php esc_html_e('受講・システム', 'sunny-kids-dance'); ?></p>
                         <ul class="skd-footer__menu-list">
                             <li><a href="<?php echo esc_url(home_url('/system/')); ?>"><?php esc_html_e('受講システム', 'sunny-kids-dance'); ?></a></li>
                             <li><a href="<?php echo esc_url(get_post_type_archive_link('class') ?: home_url('/class/')); ?>"><?php esc_html_e('開講クラス一覧', 'sunny-kids-dance'); ?></a></li>
