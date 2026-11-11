@@ -275,7 +275,7 @@ while (have_posts()) :
                 <?php endif; ?>
             </div>
             <div class="skd-reservation-dock__action">
-                <a href="<?php echo esc_url(home_url('/trial-reservation/?class_id=' . $post_id)); ?>" class="skd-btn-dock-primary">
+                <a href="<?php echo esc_url(home_url('/trial/?class_id=' . $post_id)); ?>" class="skd-btn-dock-primary">
                     <?php esc_html_e('このクラスの無料体験を予約する', 'sunny-kids-dance'); ?>
                 </a>
             </div>

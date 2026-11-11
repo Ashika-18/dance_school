@@ -41,6 +41,55 @@ get_header();
     </section>
 
     <!-- ==========================================================================
+       お知らせ（最新投稿 3件）
+       ========================================================================== -->
+    <section id="news" class="skd-section-news" aria-labelledby="heading-news">
+        <div class="skd-container">
+            <?php
+            $news_page_id = (int) get_option('page_for_posts');
+            $news_url     = $news_page_id ? get_permalink($news_page_id) : home_url('/news/');
+            $news_query   = new WP_Query(array(
+                'post_type'           => 'post',
+                'posts_per_page'      => 3,
+                'ignore_sticky_posts' => true,
+                'no_found_rows'       => true,
+            ));
+            ?>
+            <div class="skd-news__head">
+                <div>
+                    <span class="skd-section-label-en">NEWS</span>
+                    <h2 id="heading-news" class="skd-section-heading-h2">お知らせ</h2>
+                </div>
+                <a class="skd-text-link" href="<?php echo esc_url($news_url); ?>">お知らせ一覧を見る →</a>
+            </div>
+
+            <?php if ($news_query->have_posts()) : ?>
+                <ul class="skd-news__list">
+                    <?php
+                    while ($news_query->have_posts()) :
+                        $news_query->the_post();
+                        $news_cats = get_the_category();
+                        $news_cat  = !empty($news_cats) ? $news_cats[0]->name : '';
+                    ?>
+                        <li class="skd-news__item">
+                            <time class="skd-news__date" datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date('Y.m.d')); ?></time>
+                            <?php if ($news_cat !== '') : ?>
+                                <span class="skd-news__cat"><?php echo esc_html($news_cat); ?></span>
+                            <?php else : ?>
+                                <span class="skd-news__cat">お知らせ</span>
+                            <?php endif; ?>
+                            <a class="skd-news__title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
+            <?php else : ?>
+                <p class="skd-news__empty">現在、掲載中のお知らせはありません。</p>
+            <?php endif; ?>
+            <?php wp_reset_postdata(); ?>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
        ② 哲学・もてなしの心（ABOUT OUR PHILOSOPHY）
        ========================================================================== -->
     <section id="philosophy" class="skd-section-philosophy skd-glow-canvas" aria-labelledby="heading-philosophy">
@@ -246,9 +295,14 @@ get_header();
                                 <div class="skd-class-card__price">
                                     <?php echo function_exists('skda_get_formatted_price') ? skda_get_formatted_price(get_the_ID()) : '¥10,800<span>（税込）/月</span>'; ?>
                                 </div>
-                                <a href="<?php the_permalink(); ?>" class="skd-class-card__btn">
-                                    <?php esc_html_e('詳細を見る', 'sunny-kids-dance'); ?>
-                                </a>
+                                <div class="skd-class-card__actions">
+                                    <a href="<?php echo esc_url(get_permalink()); ?>" class="skd-class-card__btn">
+                                        <?php esc_html_e('クラス詳細を見る →', 'sunny-kids-dance'); ?>
+                                    </a>
+                                    <a href="<?php echo esc_url(home_url('/trial/')); ?>" class="skd-class-card__btn skd-class-card__btn--trial">
+                                        <?php esc_html_e('体験に申し込む', 'sunny-kids-dance'); ?>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -276,7 +330,10 @@ get_header();
                             </p>
                             <div class="skd-class-card__footer">
                                 <div class="skd-class-card__price">¥10,800<span>（税込）/月</span></div>
-                                <a href="#trial" class="skd-class-card__btn">体験に申し込む</a>
+                                <div class="skd-class-card__actions">
+                                    <a href="<?php echo esc_url(home_url('/class/little-rhythm/')); ?>" class="skd-class-card__btn">クラス詳細を見る →</a>
+                                    <a href="<?php echo esc_url(home_url('/trial/')); ?>" class="skd-class-card__btn skd-class-card__btn--trial">体験に申し込む</a>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -300,7 +357,10 @@ get_header();
                             </p>
                             <div class="skd-class-card__footer">
                                 <div class="skd-class-card__price">¥10,800<span>（税込）/月</span></div>
-                                <a href="#trial" class="skd-class-card__btn">体験に申し込む</a>
+                                <div class="skd-class-card__actions">
+                                    <a href="<?php echo esc_url(home_url('/class/kids-basic/')); ?>" class="skd-class-card__btn">クラス詳細を見る →</a>
+                                    <a href="<?php echo esc_url(home_url('/trial/')); ?>" class="skd-class-card__btn skd-class-card__btn--trial">体験に申し込む</a>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -324,12 +384,19 @@ get_header();
                             </p>
                             <div class="skd-class-card__footer">
                                 <div class="skd-class-card__price">¥10,800<span>（税込）/月</span></div>
-                                <a href="#trial" class="skd-class-card__btn">体験に申し込む</a>
+                                <div class="skd-class-card__actions">
+                                    <a href="<?php echo esc_url(home_url('/class/junior-advance/')); ?>" class="skd-class-card__btn">クラス詳細を見る →</a>
+                                    <a href="<?php echo esc_url(home_url('/trial/')); ?>" class="skd-class-card__btn skd-class-card__btn--trial">体験に申し込む</a>
+                                </div>
                             </div>
                         </div>
                     </article>
                 <?php endif; ?>
             </div>
+
+            <p class="skd-section-more">
+                <a class="skd-text-link" href="<?php echo esc_url(get_post_type_archive_link('class') ?: home_url('/class/')); ?>">すべてのクラス一覧を見る →</a>
+            </p>
         </div>
     </section>
 
@@ -343,68 +410,23 @@ get_header();
                 安心してお通いいただくための施設仕様・利用規約・費用開示
             </h2>
 
-            <div class="skd-specs-table-wrap">
-                <table class="skd-specs-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">受講定員・指導体制</th>
-                            <td>
-                                <strong>1クラス最大8名限定（完全定員制）</strong>
-                                インストラクター1名＋アシスタント1名の常時2名体制で指導
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">フロア・空間設備</th>
-                            <td>
-                                <strong>衝撃低減二重弾性木床（100㎡）</strong>
-                                防音遮音等級D-60、大型調光式間接照明、24時間全熱交換換気設備完備
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">保護者見学ラウンジ</th>
-                            <td>
-                                <strong>完全防音ガラス張り見学席（15席）</strong>
-                                スタジオ内に併設。Wi-Fi・電源完備、下のお子様連れでの見学可能
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">振替受講規定</th>
-                            <td>
-                                <strong>レッスン開始1時間前までWeb申請可</strong>
-                                当月および翌月末まで振替有効（振替受講消化率98.4%）
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">年間総費用（明朗会計）</th>
-                            <td>
-                                <strong>入会金：11,000円 / 月謝：10,800円</strong>
-                                発表会参加費：22,000円（指定衣装費込）。チケットノルマ完全ゼロ
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">決済方法・明細</th>
-                            <td>
-                                <strong>クレジットカード決済・口座振替対応</strong>
-                                VISA / Mastercard / JCB / AMEX / ダイナース（手数料スクール負担）
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">アクセス・立地</th>
-                            <td>
-                                <strong>JR吉祥寺駅 南口（公園口）徒歩3分</strong>
-                                吉祥寺通り直進・エレベーター完備ビル3F（ベビーカー入室可）
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">感染症・安全管理</th>
-                            <td>
-                                <strong>救命技能認定・AED設置スタジオ</strong>
-                                全スタッフ救命講習受講済、入退出管理システムによる保護者通知
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="skd-specs-summary">
+                <article class="skd-specs-summary__item">
+                    <h3>受講の規模</h3>
+                    <p>1クラス最大8名。講師とアシスタントの2名体制で、後列のお子様も見落としません。</p>
+                </article>
+                <article class="skd-specs-summary__item">
+                    <h3>月謝の目安</h3>
+                    <p>入会金 11,000円、月謝 10,800円（税込）。発表会のチケットノルマはありません。</p>
+                </article>
+                <article class="skd-specs-summary__item">
+                    <h3>通いやすさ</h3>
+                    <p>吉祥寺駅公園口から徒歩3分。防音の見学ラウンジがあり、エレベーターでベビーカーのまま入れます。</p>
+                </article>
             </div>
+            <p class="skd-section-more">
+                <a class="skd-text-link" href="<?php echo esc_url(home_url('/pricing/')); ?>">利用規約・料金詳細をすべて見る →</a>
+            </p>
         </div>
     </section>
 
@@ -447,7 +469,7 @@ get_header();
                 </div>
 
                 <div class="skd-trial-actions">
-                    <a href="<?php echo esc_url(home_url('/trial-reservation/')); ?>" class="skd-btn-trial-primary">
+                    <a href="<?php echo esc_url(home_url('/trial/')); ?>" class="skd-btn-trial-primary">
                         無料体験レッスンを予約する（空席カレンダー）
                     </a>
                     <a href="<?php echo esc_url(home_url('/contact-inquiry/')); ?>" class="skd-btn-trial-sub">

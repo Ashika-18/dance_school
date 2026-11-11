@@ -64,13 +64,13 @@ get_header();
                                 <p class="skd-404-link-card__text">年齢や発育段階に合わせた3つの少人数クラスの料金・定員・空席状況をご確認いただけます。</p>
                             </a>
 
-                            <a href="<?php echo esc_url(home_url('/facility-safety/')); ?>" class="skd-404-link-card">
+                            <a href="<?php echo esc_url(home_url('/facility/')); ?>" class="skd-404-link-card">
                                 <span class="skd-404-link-card__label">FACILITY & SAFETY</span>
                                 <strong class="skd-404-link-card__title">施設設備・安全対策</strong>
                                 <p class="skd-404-link-card__text">膝関節への衝撃を40%低減する専用二重構造弾性木床フロアと見学ラウンジの仕様です。</p>
                             </a>
 
-                            <a href="<?php echo esc_url(home_url('/tuition-policy/')); ?>" class="skd-404-link-card">
+                            <a href="<?php echo esc_url(home_url('/pricing/')); ?>" class="skd-404-link-card">
                                 <span class="skd-404-link-card__label">TUITION & POLICY</span>
                                 <strong class="skd-404-link-card__title">料金・規約・振替制度</strong>
                                 <p class="skd-404-link-card__text">不透明な追加費用を完全撤廃した明朗会計と、柔軟な振替受講ルールを完全開示しています。</p>
@@ -82,7 +82,7 @@ get_header();
                                 <p class="skd-404-link-card__text">全講師が幼少年身体運動指導士などの専門資格を保有。目線を合わせた指導体制をご紹介します。</p>
                             </a>
 
-                            <a href="<?php echo esc_url(home_url('/access/')); ?>" class="skd-404-link-card">
+                            <a href="<?php echo esc_url(home_url('/#access')); ?>" class="skd-404-link-card">
                                 <span class="skd-404-link-card__label">ACCESS & ROUTE</span>
                                 <strong class="skd-404-link-card__title">アクセス・道順案内</strong>
                                 <p class="skd-404-link-card__text">JR吉祥寺駅南口（公園口）徒歩3分。ベビーカーでも安心な駅からの詳細ルートです。</p>
@@ -101,7 +101,7 @@ get_header();
                         <p class="skd-sidebar-desc">
                             実際の定員8名限定クラスにご参加いただけます。当日の無理な勧誘は一切ございません。
                         </p>
-                        <a href="<?php echo esc_url(home_url('/trial-reservation/')); ?>" class="skd-sidebar-btn">
+                        <a href="<?php echo esc_url(home_url('/trial/')); ?>" class="skd-sidebar-btn">
                             <?php esc_html_e('体験レッスン空席確認・予約', 'sunny-kids-dance'); ?>
                         </a>
                     </div>

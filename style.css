@@ -366,6 +366,16 @@ button {
   transition: transform 300ms ease, opacity 300ms ease;
 }
 
+@media (max-width: 1024px) {
+  .skd-header__nav-desktop {
+    display: none;
+  }
+
+  .skd-header__hamburger {
+    display: flex;
+  }
+}
+
 /* モバイルドロワー */
 .skd-drawer {
   position: fixed;
@@ -772,6 +782,18 @@ body.admin-bar {
   margin-top: 56px;
 }
 
+@media (max-width: 1024px) {
+  .skd-class-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .skd-class-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .skd-class-card {
   background-color: var(--color-bg-surface);
   border-radius: 20px;
@@ -864,8 +886,25 @@ body.admin-bar {
   border-top: 1px solid var(--color-border);
   padding-top: 20px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.skd-class-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skd-class-card__actions .skd-class-card__btn {
+  flex: 1 1 8.5rem;
+  height: auto;
+  min-height: 40px;
+  padding: 8px 12px;
+  line-height: 1.35;
+  text-align: center;
+  white-space: normal;
 }
 
 .skd-class-card__price {
@@ -891,12 +930,42 @@ body.admin-bar {
   color: var(--color-accent);
   font-size: 0.8125rem;
   font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
   transition: all var(--transition-base);
 }
 
 .skd-class-card__btn:hover {
   background-color: var(--color-accent);
   color: var(--color-text-inverse);
+}
+
+.skd-class-card__btn--trial {
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+}
+
+.skd-class-card__btn--trial:hover {
+  background-color: #A8811A;
+  color: var(--color-text-inverse);
+}
+
+.skd-section-more {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.skd-text-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-accent);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.skd-text-link:hover {
+  opacity: 0.75;
 }
 
 /* ==========================================================================
@@ -906,6 +975,125 @@ body.admin-bar {
   padding-top: var(--space-section);
   padding-bottom: var(--space-section);
   background-color: var(--color-bg-sub);
+}
+
+.skd-specs-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: var(--container-sub);
+  margin: 8px auto 0;
+}
+
+.skd-specs-summary__item {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 28px 24px;
+}
+
+.skd-specs-summary__item h3 {
+  margin-bottom: 10px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.skd-specs-summary__item p {
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .skd-specs-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   NEWS（トップのお知らせ 3件）
+   ========================================================================== */
+.skd-section-news {
+  padding-top: 72px;
+  padding-bottom: 24px;
+  background-color: var(--color-bg-base);
+}
+
+.skd-news__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.skd-news__head .skd-section-label-en,
+.skd-news__head .skd-section-heading-h2 {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.skd-news__list {
+  border-top: 1px solid var(--color-border);
+}
+
+.skd-news__item {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(6rem, 8rem) 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skd-news__date {
+  font-family: var(--font-en);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-sub-muted);
+}
+
+.skd-news__cat {
+  justify-self: start;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-sub);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.skd-news__title {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.skd-news__title:hover {
+  color: var(--color-accent);
+}
+
+.skd-news__empty {
+  padding: 28px 0 8px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .skd-news__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .skd-news__item {
+    grid-template-columns: auto 1fr;
+  }
+
+  .skd-news__title {
+    grid-column: 1 / -1;
+  }
 }
 
 .skd-specs-table-wrap {
@@ -1268,5 +1456,71 @@ body.admin-bar {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+  }
+}
+
+/* ==========================================================================
+   固定ページ本文（エディタ入力とフォールバックを同じカードに載せる）
+   ========================================================================== */
+.skd-page-content-body,
+.skd-page-fallback-content .skd-page-section {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 40px 36px;
+}
+
+.skd-page-content-body > :first-child {
+  margin-top: 0;
+}
+
+.skd-page-content-body :where(p, li) {
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: var(--color-text-secondary);
+}
+
+.skd-page-content-body :where(h2) {
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-accent);
+  font-family: var(--font-serif);
+  font-size: clamp(1.375rem, 2vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--color-text-primary);
+}
+
+.skd-page-content-body :where(h3) {
+  margin: 32px 0 12px;
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.skd-page-content-body :where(ul, ol) {
+  margin: 0 0 24px;
+  padding-left: 1.25rem;
+}
+
+.skd-page-content-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.skd-page-content-body th,
+.skd-page-content-body td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+@media screen and (max-width: 767px) {
+  .skd-page-content-body,
+  .skd-page-fallback-content .skd-page-section {
+    padding: 24px 18px;
   }
 }

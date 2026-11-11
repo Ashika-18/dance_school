@@ -75,16 +75,16 @@ defined('ABSPATH') || exit;
             else :
             ?>
                 <ul class="skd-header__nav-list">
-                    <li><a href="#philosophy" class="skd-header__nav-link">教育理念</a></li>
-                    <li><a href="#commitment" class="skd-header__nav-link">3つの特徴</a></li>
-                    <li><a href="#classes" class="skd-header__nav-link">開講クラス</a></li>
-                    <li><a href="#specifications" class="skd-header__nav-link">施設・利用規約</a></li>
-                    <li><a href="#access" class="skd-header__nav-link">アクセス</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#philosophy')); ?>" class="skd-header__nav-link">教育理念</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#commitment')); ?>" class="skd-header__nav-link">3つの特徴</a></li>
+                    <li><a href="<?php echo esc_url(get_post_type_archive_link('class') ?: home_url('/class/')); ?>" class="skd-header__nav-link">開講クラス</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/facility/')); ?>" class="skd-header__nav-link">施設・利用規約</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#access')); ?>" class="skd-header__nav-link">アクセス</a></li>
                 </ul>
             <?php endif; ?>
 
             <!-- ヘッダー右端CTAピルボタン -->
-            <a href="#trial" class="skd-header__cta-btn">
+            <a href="<?php echo esc_url(home_url('/trial/')); ?>" class="skd-header__cta-btn">
                 <?php esc_html_e('体験レッスン予約', 'sunny-kids-dance'); ?>
             </a>
         </nav>
@@ -114,16 +114,16 @@ defined('ABSPATH') || exit;
             else :
             ?>
                 <ul class="skd-drawer__menu">
-                    <li><a href="#philosophy">教育理念</a></li>
-                    <li><a href="#commitment">3つの安心ポイント</a></li>
-                    <li><a href="#classes">開講クラス案内</a></li>
-                    <li><a href="#specifications">施設仕様・費用開示</a></li>
-                    <li><a href="#access">アクセス・道順</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#philosophy')); ?>">教育理念</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#commitment')); ?>">3つの安心ポイント</a></li>
+                    <li><a href="<?php echo esc_url(get_post_type_archive_link('class') ?: home_url('/class/')); ?>">開講クラス案内</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/pricing/')); ?>">施設仕様・費用開示</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#access')); ?>">アクセス・道順</a></li>
                 </ul>
             <?php endif; ?>
 
             <div class="skd-drawer__cta">
-                <a href="#trial" class="skd-btn-trial-primary" style="width: 100%; text-align: center;">
+                <a href="<?php echo esc_url(home_url('/trial/')); ?>" class="skd-btn-trial-primary" style="width: 100%; text-align: center;">
                     <?php esc_html_e('無料体験レッスンを予約する', 'sunny-kids-dance'); ?>
                 </a>
                 <p class="skd-drawer__tel">

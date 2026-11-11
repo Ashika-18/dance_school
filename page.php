@@ -13,6 +13,15 @@ get_header();
 
 // スラッグによる下層固定ページの判定
 $current_slug = get_post_field('post_name', get_post());
+$skda_page_slug_aliases = array(
+    'facility-safety'        => 'facility',
+    'tuition-policy'         => 'pricing',
+    'trial-guide'            => 'trial',
+    'commercial-transaction' => 'tokusho',
+);
+if (isset($skda_page_slug_aliases[$current_slug])) {
+    $current_slug = $skda_page_slug_aliases[$current_slug];
+}
 ?>
 
 <main id="primary" class="site-main skd-page-main" role="main">
@@ -44,14 +53,26 @@ $current_slug = get_post_field('post_name', get_post());
                     case 'instructors':
                         echo 'QUALIFIED INSTRUCTORS';
                         break;
-                    case 'facility-safety':
+                    case 'facility':
                         echo 'FACILITY & SAFETY DESIGN';
                         break;
-                    case 'tuition-policy':
+                    case 'system':
+                        echo 'ENROLLMENT SYSTEM';
+                        break;
+                    case 'pricing':
                         echo 'TUITION & POLICY';
                         break;
-                    case 'trial-guide':
+                    case 'trial':
                         echo 'TRIAL LESSON GUIDE';
+                        break;
+                    case 'terms':
+                        echo 'TERMS & CANCELLATION';
+                        break;
+                    case 'privacy-policy':
+                        echo 'PRIVACY POLICY';
+                        break;
+                    case 'tokusho':
+                        echo 'LEGAL NOTICE';
                         break;
                     case 'access':
                         echo 'STUDIO ACCESS & ROUTE';
@@ -149,7 +170,7 @@ $current_slug = get_post_field('post_name', get_post());
                                             </div>
                                         </section>
 
-                                    <?php elseif ('facility-safety' === $current_slug) : ?>
+                                    <?php elseif ('facility' === $current_slug) : ?>
                                         <!-- ③ 施設設備・安全対策フォールバック -->
                                         <section class="skd-page-section">
                                             <h2 class="skd-page-h2">成長期の骨と関節を守る、特注の劇場舞台構造二重床</h2>
@@ -163,7 +184,7 @@ $current_slug = get_post_field('post_name', get_post());
                                             </p>
                                         </section>
 
-                                    <?php elseif ('tuition-policy' === $current_slug) : ?>
+                                    <?php elseif ('pricing' === $current_slug) : ?>
                                         <!-- ④ 料金・規約・振替制度フォールバック -->
                                         <section class="skd-page-section">
                                             <h2 class="skd-page-h2">不透明な隠れコストを完全撤廃。安心の明朗会計規約</h2>
@@ -195,9 +216,9 @@ $current_slug = get_post_field('post_name', get_post());
                                             </div>
                                         </section>
 
-                                    <?php elseif ('trial-guide' === $current_slug) : ?>
+                                    <?php elseif ('trial' === $current_slug) : ?>
                                         <!-- ⑤ 体験レッスン完全ガイドフォールバック -->
-                                        <section class="skd-page-section">
+                                        <section id="diagnosis" class="skd-page-section">
                                             <h2 class="skd-page-h2">初めてのスタジオでも緊張しない、当日の入室から退出まで</h2>
                                             <p class="skd-page-lead">
                                                 初めての場所に足を踏み入れるお子様の不安を先回りして取り除くため、当日のタイムラインと持ち物をすべて公開しています。事前の無理な準備は必要ありません。
@@ -298,6 +319,143 @@ $current_slug = get_post_field('post_name', get_post());
                                             </form>
                                         </section>
 
+                                    <?php elseif ('system' === $current_slug) : ?>
+                                        <section class="skd-page-section">
+                                            <h2 class="skd-page-h2">定員8名・講師2名。振替も決済も、保護者の負担を減らす仕組みです</h2>
+                                            <p class="skd-page-lead">
+                                                レッスンの質を守るために1クラスの定員を8名までとし、講師とアシスタントの2名で見ます。お休み・お支払い・入退室の連絡は、共働きのご家庭でも追いかけなくて済む形にしています。
+                                            </p>
+                                            <div class="skd-specs-table-wrap">
+                                                <table class="skd-specs-table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">受講の単位</th>
+                                                            <td><strong>週1回・50分、月4回</strong><br>月謝に教材費を含みます。追加の月額費用はありません。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">振替</th>
+                                                            <td><strong>開始1時間前まで申請できます</strong><br>当月と翌月末まで有効です。学校行事や発熱でも、月謝を無駄にしません。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">お支払い</th>
+                                                            <td><strong>クレジットカード、または口座振替</strong><br>VISA / Mastercard / JCB / AMEX / ダイナース。決済手数料はスクールが負担します。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">入退室</th>
+                                                            <td><strong>入退出のたびに保護者へ通知します</strong><br>スタッフは救命講習を受講済みで、スタジオにAEDを置いています。</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </section>
+
+                                    <?php elseif ('terms' === $current_slug) : ?>
+                                        <section class="skd-page-section">
+                                            <h2 class="skd-page-h2">通う前に確認できる、施設仕様と受講の約束</h2>
+                                            <p class="skd-page-lead">
+                                                定員、床、見学、振替、費用、決済、立地、安全管理を一覧にしています。発表会のチケットノルマと、当日の強引な入会勧誘はありません。
+                                            </p>
+                                            <div class="skd-specs-table-wrap">
+                                                <table class="skd-specs-table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">受講定員・指導体制</th>
+                                                            <td><strong>1クラス最大8名（完全定員制）</strong><br>インストラクター1名とアシスタント1名の2名体制です。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">フロア・空間設備</th>
+                                                            <td><strong>衝撃を抑える二重弾性木床（100㎡）</strong><br>防音遮音等級D-60、調光式の間接照明、全熱交換換気を備えています。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">保護者見学ラウンジ</th>
+                                                            <td><strong>防音ガラスの見学席 15席</strong><br>Wi-Fiと電源があり、小さなお子様と一緒に見学できます。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">振替・キャンセル</th>
+                                                            <td><strong>開始1時間前まで申請できます</strong><br>当月と翌月末まで振替が有効です。体験レッスンは、前日までにご連絡いただければ日程を変更できます。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">費用</th>
+                                                            <td><strong>入会金 11,000円 / 月謝 10,800円（税込）</strong><br>発表会参加費は 22,000円（指定衣装込み）。チケットの買取義務はありません。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">退会</th>
+                                                            <td><strong>退会を希望する月の前月20日まで</strong>にご連絡ください。日割り返金は行っていません。</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </section>
+
+                                    <?php elseif ('privacy-policy' === $current_slug) : ?>
+                                        <section class="skd-page-section">
+                                            <h2 class="skd-page-h2">お子様と保護者の情報は、レッスンのためにだけ使います</h2>
+                                            <p class="skd-page-lead">
+                                                体験予約、入会、振替、入退室の連絡に必要な範囲で、氏名・年齢・連絡先・健康上の配慮事項をうかがいます。第三者への販売や、レッスンと関係のない広告配信には使いません。
+                                            </p>
+                                            <div class="skd-specs-table-wrap">
+                                                <table class="skd-specs-table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">いただく情報</th>
+                                                            <td>保護者とお子様の氏名、年齢、電話番号、メールアドレス、体験や通塾に必要な配慮事項。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">使い方</th>
+                                                            <td>クラス編成、出欠と振替、緊急連絡、料金のご案内。写真をサイトやSNSに使うときは、事前に許諾をとります。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">預ける相手</th>
+                                                            <td>決済代行とメール配信など、運営に必要な委託先だけです。目的外の提供はしません。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">開示・削除</th>
+                                                            <td>ご本人確認のうえ、開示・訂正・削除に応じます。電話 0422-29-8815、またはスタジオまでご連絡ください。</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </section>
+
+                                    <?php elseif ('tokusho' === $current_slug) : ?>
+                                        <section class="skd-page-section">
+                                            <h2 class="skd-page-h2">特定商取引法に基づく表記</h2>
+                                            <div class="skd-specs-table-wrap">
+                                                <table class="skd-specs-table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">販売事業者</th>
+                                                            <td>サニーキッズダンスアカデミー 吉祥寺校</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">所在地</th>
+                                                            <td>〒180-0005 東京都武蔵野市吉祥寺南町2丁目 サニービル 3F</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">電話番号</th>
+                                                            <td>0422-29-8815（火〜金 14:00〜19:30 / 土日祝 09:30〜18:00、月曜休校）</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">販売価格</th>
+                                                            <td>入会金 11,000円、月謝 10,800円（税込・週1回50分）。発表会参加費 22,000円（税込・指定衣装込み）。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">お支払い</th>
+                                                            <td>クレジットカード（VISA / Mastercard / JCB / AMEX / ダイナース）または口座振替。手数料はスクールが負担します。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">役務の提供</th>
+                                                            <td>お申し込み後、初回レッスン日から受講を開始します。体験レッスンは予約日にスタジオで行います。</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">キャンセル</th>
+                                                            <td>体験は前日までのご連絡で日程を変更できます。月謝の日割り返金はありません。退会は前月20日までのご連絡が必要です。</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </section>
+
                                     <?php else : ?>
                                         <!-- 一般固定ページフォールバック -->
                                         <section class="skd-page-section">
@@ -322,7 +480,7 @@ $current_slug = get_post_field('post_name', get_post());
                         <p class="skd-sidebar-desc">
                             実際の定員8名クラスに混ざり、スタジオの弾性木床フロアと講師の丁寧な目線を体験いただけます。
                         </p>
-                        <a href="<?php echo esc_url(home_url('/trial-reservation/')); ?>" class="skd-sidebar-btn">
+                        <a href="<?php echo esc_url(home_url('/trial/')); ?>" class="skd-sidebar-btn">
                             <?php esc_html_e('空席カレンダーを見る', 'sunny-kids-dance'); ?>
                         </a>
                     </div>
@@ -341,12 +499,13 @@ $current_slug = get_post_field('post_name', get_post());
                     <div class="skd-sidebar-menu-card">
                         <h4 class="skd-sidebar-subtitle"><?php esc_html_e('アカデミー案内', 'sunny-kids-dance'); ?></h4>
                         <ul class="skd-sidebar-links">
-                            <li><a href="<?php echo esc_url(home_url('/curriculum/')); ?>"><?php esc_html_e('カリキュラム・進度管理', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/instructors/')); ?>"><?php esc_html_e('指導陣・専門資格紹介', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/facility-safety/')); ?>"><?php esc_html_e('施設設備・安全対策', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/tuition-policy/')); ?>"><?php esc_html_e('料金一覧・振替受講制度', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/trial-guide/')); ?>"><?php esc_html_e('体験レッスン完全ガイド', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/access/')); ?>"><?php esc_html_e('アクセス・駅からの道順', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/curriculum/')); ?>"><?php esc_html_e('カリキュラム・進度基準', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/instructors/')); ?>"><?php esc_html_e('指導陣・専門資格者紹介', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/facility/')); ?>"><?php esc_html_e('施設設備・安全対策', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/system/')); ?>"><?php esc_html_e('受講システム', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/pricing/')); ?>"><?php esc_html_e('料金一覧・振替受講制度', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/trial/')); ?>"><?php esc_html_e('体験レッスン完全ガイド', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/#access')); ?>"><?php esc_html_e('アクセス・駅からの道順', 'sunny-kids-dance'); ?></a></li>
                         </ul>
                     </div>
                 </aside>
@@ -588,4 +747,3 @@ $current_slug = get_post_field('post_name', get_post());
 
 <?php
 get_footer();
-```eof

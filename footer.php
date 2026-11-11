@@ -69,22 +69,22 @@ defined('ABSPATH') || exit;
                     <div class="skd-footer__links-group">
                         <p class="skd-footer__group-title"><?php esc_html_e('アカデミー案内', 'sunny-kids-dance'); ?></p>
                         <ul class="skd-footer__menu-list">
+                            <li><a href="<?php echo esc_url(home_url('/curriculum/')); ?>"><?php esc_html_e('カリキュラム・進度基準', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/instructors/')); ?>"><?php esc_html_e('指導陣・専門資格者紹介', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/facility/')); ?>"><?php esc_html_e('施設設備・安全対策', 'sunny-kids-dance'); ?></a></li>
                             <li><a href="<?php echo esc_url(home_url('/#philosophy')); ?>"><?php esc_html_e('教育理念・指導方針', 'sunny-kids-dance'); ?></a></li>
                             <li><a href="<?php echo esc_url(home_url('/#commitment')); ?>"><?php esc_html_e('3つの安心ポイント', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/curriculum/')); ?>"><?php esc_html_e('カリキュラム・進度基準', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/instructors/')); ?>"><?php esc_html_e('指導陣・専門資格紹介', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/facility-safety/')); ?>"><?php esc_html_e('施設設備・安全対策', 'sunny-kids-dance'); ?></a></li>
                         </ul>
                     </div>
 
                     <div class="skd-footer__links-group">
                         <p class="skd-footer__group-title"><?php esc_html_e('受講・システム', 'sunny-kids-dance'); ?></p>
                         <ul class="skd-footer__menu-list">
-                            <li><a href="<?php echo esc_url(home_url('/#classes')); ?>"><?php esc_html_e('開講クラス一覧', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/#specifications')); ?>"><?php esc_html_e('施設仕様・利用規程データ', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/tuition-policy/')); ?>"><?php esc_html_e('料金一覧・振替受講制度', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/trial-guide/')); ?>"><?php esc_html_e('体験レッスン完全ガイド', 'sunny-kids-dance'); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/access/')); ?>"><?php esc_html_e('アクセス・駅からの道順', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/system/')); ?>"><?php esc_html_e('受講システム', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(get_post_type_archive_link('class') ?: home_url('/class/')); ?>"><?php esc_html_e('開講クラス一覧', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/pricing/')); ?>"><?php esc_html_e('料金一覧・振替受講制度', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/trial/')); ?>"><?php esc_html_e('体験レッスン完全ガイド', 'sunny-kids-dance'); ?></a></li>
+                            <li><a href="<?php echo esc_url(home_url('/#access')); ?>"><?php esc_html_e('アクセス・駅からの道順', 'sunny-kids-dance'); ?></a></li>
                         </ul>
                     </div>
                 </div>
@@ -96,7 +96,7 @@ defined('ABSPATH') || exit;
             <ul class="skd-footer__legal-links">
                 <li><a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>"><?php esc_html_e('プライバシーポリシー', 'sunny-kids-dance'); ?></a></li>
                 <li><a href="<?php echo esc_url(home_url('/terms/')); ?>"><?php esc_html_e('受講規約・キャンセル規定', 'sunny-kids-dance'); ?></a></li>
-                <li><a href="<?php echo esc_url(home_url('/commercial-transaction/')); ?>"><?php esc_html_e('特定商取引法に基づく表記', 'sunny-kids-dance'); ?></a></li>
+                <li><a href="<?php echo esc_url(home_url('/tokusho/')); ?>"><?php esc_html_e('特定商取引法に基づく表記', 'sunny-kids-dance'); ?></a></li>
             </ul>
 
             <p class="skd-footer__copyright">
@@ -111,7 +111,7 @@ defined('ABSPATH') || exit;
 <aside class="skd-floating-diagnostic js-floating-diagnostic" aria-label="<?php esc_attr_e('おすすめクラス診断', 'sunny-kids-dance'); ?>">
     <button type="button" class="skd-floating-diagnostic__close js-floating-close" aria-label="<?php esc_attr_e('診断バナーを閉じる', 'sunny-kids-dance'); ?>">&times;</button>
     <span class="skd-floating-diagnostic__question">お子様にぴったりのクラスは？</span>
-    <a href="<?php echo esc_url(home_url('/trial-guide/#diagnosis')); ?>" class="skd-floating-diagnostic__btn">
+    <a href="<?php echo esc_url(home_url('/trial/#diagnosis')); ?>" class="skd-floating-diagnostic__btn">
         <span>30秒かんたん診断</span>
         <span aria-hidden="true">&rarr;</span>
     </a>

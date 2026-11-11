@@ -24,6 +24,7 @@ $skda_inc_modules = array(
     'security.php',    // HTTPヘッダー・セキュリティ・REST制限
     'setup.php',       // テーマ機能サポート・アセット読み込み・画像サイズ
     'post-types.php',  // カスタム投稿タイプ(class)・タクソノミー・初期シード
+    'pages.php',       // 回遊用固定ページの自動生成
     'meta-boxes.php',  // 12項目のメタデータ入力UI・保存処理
 );
 
